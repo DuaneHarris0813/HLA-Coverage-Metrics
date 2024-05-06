@@ -8,23 +8,24 @@ Created on Tue Oct 10 16:18:13 2023
 
 
 # IMPORT PACKAGES:
+from Bio import SeqIO
 from numpy import unique
 from openpyxl import load_workbook
 import hla_functions as hf
 
 
 # DATA FOLDERS AND FILES:
-fd  = '../Data/'
-fdr = '../Results/'
-fp  = 'Protein sequences.xlsx'
-fr1 = 'Coverage Results.xlsx'
-fr2 = 'Individual Results'
+fd  = '../Data/'              # Data Folder
+fdr = '../Results/'           # Results Folder
+fp  = 'Sequences.fasta'       # Protein Sequence File
+fr1 = 'Coverage Results.xlsx' # Regional Results File
+fr2 = 'Individual Results'    # Individual Results File
 
 
 # HLA SPECIFIC FILES AND LABLES:
 
-fa =  'HLA-A Allele Frequencies.xlsx'               # File for Allele Frequency
-fs = ['HLA-A_Ebola_Zaire_GP1_Weighted_Results.xlsx',
+fa =  'HLA-A Allele Frequencies.xlsx'                  # Allele Frequency File
+fs = ['HLA-A_Ebola_Zaire_GP1_Weighted_Results.xlsx',   # Pathogen Files
       'HLA-A_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
       'HLA-A_Ebola_Zaire_NP_Weighted_Results.xlsx',
       'HLA-A_Ebola_Sudan_NP_Weighted_Results.xlsx',
@@ -34,7 +35,7 @@ fs = ['HLA-A_Ebola_Zaire_GP1_Weighted_Results.xlsx',
       'HLA-A_SARS_OmicronBA2_Weighted_Results.xlsx',
       'HLA-A_SARS_OmicronBA5_Weighted_Results.xlsx',
       'HLA-A_Burkholderia_HCP1_Weighted_Results.xlsx']
-lb = ['Ebola GP1 (Zaire)',
+lb = ['Ebola GP1 (Zaire)',                             # Pathogen Sheet Names
       'Ebola GP1 (Sudan)',
       'Ebola NP (Zaire)',
       'Ebola NP (Sudan)',
@@ -45,8 +46,8 @@ lb = ['Ebola GP1 (Zaire)',
       'SARS-CoV-2 Omicron BA.5', 
       'Burkholderia HCP1']
 
-# fa =  'HLA-B Allele Frequencies.xlsx'               # File for Allele Frequency
-# fs = ['HLA-B_Ebola_Zaire_GP1_Weighted_Results.xlsx',
+# fa =  'HLA-B Allele Frequencies.xlsx'                  # Allele Frequency File
+# fs = ['HLA-B_Ebola_Zaire_GP1_Weighted_Results.xlsx',   # Pathogen Files
 #       'HLA-B_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
 #       'HLA-B_Ebola_Zaire_NP_Weighted_Results.xlsx',
 #       'HLA-B_Ebola_Sudan_NP_Weighted_Results.xlsx',
@@ -56,7 +57,7 @@ lb = ['Ebola GP1 (Zaire)',
 #       'HLA-B_SARS_OmicronBA2_Weighted_Results.xlsx',
 #       'HLA-B_SARS_OmicronBA5_Weighted_Results.xlsx',
 #       'HLA-B_Burkholderia_HCP1_Weighted_Results.xlsx']
-# lb = ['Ebola GP1 (Zaire)',
+# lb = ['Ebola GP1 (Zaire)',                             # Pathogen Sheet Names
 #       'Ebola GP1 (Sudan)',
 #       'Ebola NP (Zaire)',
 #       'Ebola NP (Sudan)',
@@ -67,8 +68,8 @@ lb = ['Ebola GP1 (Zaire)',
 #       'SARS-CoV-2 Omicron BA.5', 
 #       'Burkholderia HCP1']
 
-# fa =  'HLA-C Allele Frequencies.xlsx'               # File for Allele Frequency
-# fs = ['HLA-C_Ebola_Zaire_GP1_Weighted_Results.xlsx',
+# fa =  'HLA-C Allele Frequencies.xlsx'                  # Allele Frequency File
+# fs = ['HLA-C_Ebola_Zaire_GP1_Weighted_Results.xlsx',   # Pathogen Files
 #       'HLA-C_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
 #       'HLA-C_Ebola_Zaire_NP_Weighted_Results.xlsx',
 #       'HLA-C_Ebola_Sudan_NP_Weighted_Results.xlsx',
@@ -78,7 +79,7 @@ lb = ['Ebola GP1 (Zaire)',
 #       'HLA-C_SARS_OmicronBA2_Weighted_Results.xlsx',
 #       'HLA-C_SARS_OmicronBA5_Weighted_Results.xlsx',
 #       'HLA-C_Burkholderia_HCP1_Weighted_Results.xlsx']
-# lb = ['Ebola GP1 (Zaire)',
+# lb = ['Ebola GP1 (Zaire)',                             # Pathogen Sheet Names
 #       'Ebola GP1 (Sudan)',
 #       'Ebola NP (Zaire)',
 #       'Ebola NP (Sudan)',
@@ -106,49 +107,32 @@ es = hf.compute_enrichment_scores() # Enrichment Scores
 a  = load_workbook(fd+fa)    # Load Allele Frequecy File 
 rs = a.sheetnames            # Region Names
 nr = len(rs)                 # Number of Regions
-af = [{} for i in range(nr)] # Initialize Allele Frequency Dictionary
+af = [{} for j in range(nr)] # Initialize Allele Frequency Dictionary
 Z  = []                      # Initialize Allele Frequency Sums
-for i in range(nr):
-    af[i],S = hf.allele_frequency_dict(a[rs[i]]) # Get Frequencies for Region j
+for j in range(nr):                              # Iterate Through Regions
+    af[j],S = hf.allele_frequency_dict(a[rs[j]]) # Get Frequencies for Region j
     Z.append(S)                                  # Sum of Frequencies for Region j
         
         
 #%% LOAD PROTEIN SEQUENCE DATA ################################################
 
 
-dp = load_workbook(fd+fp)
-ps = []
-for i,j in enumerate(dp['Phase 1'].iter_rows(min_row=2, max_row=11, min_col=3, max_col=3, values_only=True)):
-    ps.append(j[0])
-    ps[i] = ps[i].replace('\n','')
+# CREATE PEPTIDE SEQUENCE DICTIONARY:
+pd = {}                                     # Initialize Protein Dictionary
+for i in SeqIO.parse(fd+fp,format='fasta'): # Iterate Through FASTA Entries
+    pd[i.description] = str(i.seq)          # Add Sequence i to Dictionary
 
 
 # DETERMINE NUMBER OF DISEASES:
-if isinstance(fs,str): # If fs is a single string
-    nd = 1             # Then the number of diseases is 1
-else:                  # If fs is a list
-    nd = len(fs)       # Then the number of diseases is length of list
+if isinstance(fs,str): nd = 1  # If fs is a string, then nd is 1
+else: nd = len(fs)             # If fs is a list, then nd is its length
     
 
 # RETRIEVE FULL PROTEIN SEQUENCES:
-Ep = [[] for i in range(nd)]
-ep = [[] for i in range(nd)]
-for i in range(nd):
-    for j in range(len(ps[i])-8):
-        Ep[i].append(ps[i][j:j+9])
-        
-        
-# REORDER DISEASES:
-ep[0] = Ep[1]
-ep[1] = Ep[3]
-ep[2] = Ep[2]
-ep[3] = Ep[4]
-ep[4] = Ep[5]
-ep[5] = Ep[6]
-ep[6] = Ep[7]
-ep[7] = Ep[8]
-ep[8] = Ep[9]
-ep[9] = Ep[0]
+ep = [[] for i in range(nd)]           # Initialize Epitope Variable
+for i in range(nd):                    # Iterate Through Pathogens
+    for j in range(len(pd[lb[i]])-8):  # Iterate Through Regions
+        ep[i].append(pd[lb[i]][j:j+9]) # Add Epitope j for Pathogen i to List
 
 
 #%% COMPUTE SCORES ############################################################
@@ -207,7 +191,7 @@ for i in range(nd): # Iterate Through Diseases
         if fa[4]=='C' and j==0 and len(a2)<ta: 
             for k in range(len(a2),ta):
                 a2.append('')
-        an[j] = a2
+        an[j] = a2 # Allele Names for Region j
         
         
         # COMPUTE ALLELE AND INDIVIDUAL FREQUENCIES:
