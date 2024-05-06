@@ -6,8 +6,6 @@ Created on Tue Oct 10 16:18:13 2023
 @author: duaneharris
 """
 
-# THIS IS THE BRANCH FILE
-# Updated from Anaconda
 
 # IMPORT PACKAGES:
 from numpy import unique
@@ -15,7 +13,7 @@ from openpyxl import load_workbook
 import hla_functions as hf
 
 
-# DATA FOLDER:
+# DATA FOLDERS AND FILES:
 fd  = '../Data/'
 fdr = '../Results/'
 fp  = 'Protein sequences.xlsx'
@@ -23,41 +21,19 @@ fr1 = 'Coverage Results.xlsx'
 fr2 = 'Individual Results'
 
 
-# DATA FILES:
+# HLA SPECIFIC FILES AND LABLES:
 
-# fa =  'HLA-A Allele Frequencies.xlsx'               # File for Allele Frequency
-# fs = ['HLA-A_Ebola_Zaire_GP1_Weighted_Results.xlsx',
-#       'HLA-A_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
-#       'HLA-A_Ebola_Zaire_NP_Weighted_Results.xlsx',
-#       'HLA-A_Ebola_Sudan_NP_Weighted_Results.xlsx',
-#       'HLA-A_SARS_Wuhan-Hu-1_Weighted_Results.xlsx',      
-#       'HLA-A_SARS_DeltaAY4_Weighted_Results.xlsx',
-#       'HLA-A_SARS_OmicronBA1_Weighted_Results.xlsx',
-#       'HLA-A_SARS_OmicronBA2_Weighted_Results.xlsx',
-#       'HLA-A_SARS_OmicronBA5_Weighted_Results.xlsx',
-#       'HLA-A_Burkholderia_HCP1_Weighted_Results.xlsx']
-# lb = ['Ebola GP1 (Zaire)',
-#       'Ebola GP1 (Sudan)',
-#       'Ebola NP (Zaire)',
-#       'Ebola NP (Sudan)',
-#       'SARS-CoV-2 Wuhan-Hu-1',
-#       'SARS-CoV-2 Delta AY.4',
-#       'SARS-CoV-2 Omicron BA.1',
-#       'SARS-CoV-2 Omicron BA.2',
-#       'SARS-CoV-2 Omicron BA.5', 
-#       'Burkholderia HCP1']
-
-fa =  'HLA-B Allele Frequencies.xlsx'               # File for Allele Frequency
-fs = ['HLA-B_Ebola_Zaire_GP1_Weighted_Results.xlsx',
-      'HLA-B_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
-      'HLA-B_Ebola_Zaire_NP_Weighted_Results.xlsx',
-      'HLA-B_Ebola_Sudan_NP_Weighted_Results.xlsx',
-      'HLA-B_SARS_Wuhan-Hu-1_Weighted_Results.xlsx',      
-      'HLA-B_SARS_DeltaAY4_Weighted_Results.xlsx',
-      'HLA-B_SARS_OmicronBA1_Weighted_Results.xlsx',
-      'HLA-B_SARS_OmicronBA2_Weighted_Results.xlsx',
-      'HLA-B_SARS_OmicronBA5_Weighted_Results.xlsx',
-      'HLA-B_Burkholderia_HCP1_Weighted_Results.xlsx']
+fa =  'HLA-A Allele Frequencies.xlsx'               # File for Allele Frequency
+fs = ['HLA-A_Ebola_Zaire_GP1_Weighted_Results.xlsx',
+      'HLA-A_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
+      'HLA-A_Ebola_Zaire_NP_Weighted_Results.xlsx',
+      'HLA-A_Ebola_Sudan_NP_Weighted_Results.xlsx',
+      'HLA-A_SARS_Wuhan-Hu-1_Weighted_Results.xlsx',      
+      'HLA-A_SARS_DeltaAY4_Weighted_Results.xlsx',
+      'HLA-A_SARS_OmicronBA1_Weighted_Results.xlsx',
+      'HLA-A_SARS_OmicronBA2_Weighted_Results.xlsx',
+      'HLA-A_SARS_OmicronBA5_Weighted_Results.xlsx',
+      'HLA-A_Burkholderia_HCP1_Weighted_Results.xlsx']
 lb = ['Ebola GP1 (Zaire)',
       'Ebola GP1 (Sudan)',
       'Ebola NP (Zaire)',
@@ -68,6 +44,28 @@ lb = ['Ebola GP1 (Zaire)',
       'SARS-CoV-2 Omicron BA.2',
       'SARS-CoV-2 Omicron BA.5', 
       'Burkholderia HCP1']
+
+# fa =  'HLA-B Allele Frequencies.xlsx'               # File for Allele Frequency
+# fs = ['HLA-B_Ebola_Zaire_GP1_Weighted_Results.xlsx',
+#       'HLA-B_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
+#       'HLA-B_Ebola_Zaire_NP_Weighted_Results.xlsx',
+#       'HLA-B_Ebola_Sudan_NP_Weighted_Results.xlsx',
+#       'HLA-B_SARS_Wuhan-Hu-1_Weighted_Results.xlsx',      
+#       'HLA-B_SARS_DeltaAY4_Weighted_Results.xlsx',
+#       'HLA-B_SARS_OmicronBA1_Weighted_Results.xlsx',
+#       'HLA-B_SARS_OmicronBA2_Weighted_Results.xlsx',
+#       'HLA-B_SARS_OmicronBA5_Weighted_Results.xlsx',
+#       'HLA-B_Burkholderia_HCP1_Weighted_Results.xlsx']
+# lb = ['Ebola GP1 (Zaire)',
+#       'Ebola GP1 (Sudan)',
+#       'Ebola NP (Zaire)',
+#       'Ebola NP (Sudan)',
+#       'SARS-CoV-2 Wuhan-Hu-1',
+#       'SARS-CoV-2 Delta AY.4',
+#       'SARS-CoV-2 Omicron BA.1',
+#       'SARS-CoV-2 Omicron BA.2',
+#       'SARS-CoV-2 Omicron BA.5', 
+#       'Burkholderia HCP1']
 
 # fa =  'HLA-C Allele Frequencies.xlsx'               # File for Allele Frequency
 # fs = ['HLA-C_Ebola_Zaire_GP1_Weighted_Results.xlsx',
@@ -104,17 +102,15 @@ pw = hf.compute_position_weights()  # Position Weights
 es = hf.compute_enrichment_scores() # Enrichment Scores
 
 
-#%% LOAD ALLELE FREQUENCY DATA ################################################
-
-
-a  = load_workbook(fd+fa)
-rs = a.sheetnames
-nr = len(rs)
-af = [{} for i in range(nr)]
-Z  = []
+# GET ALLELE FREQUENCY DATA 
+a  = load_workbook(fd+fa)    # Load Allele Frequecy File 
+rs = a.sheetnames            # Region Names
+nr = len(rs)                 # Number of Regions
+af = [{} for i in range(nr)] # Initialize Allele Frequency Dictionary
+Z  = []                      # Initialize Allele Frequency Sums
 for i in range(nr):
-    af[i],S = hf.allele_frequency_dict(a[rs[i]])
-    Z.append(S)
+    af[i],S = hf.allele_frequency_dict(a[rs[i]]) # Get Frequencies for Region j
+    Z.append(S)                                  # Sum of Frequencies for Region j
         
         
 #%% LOAD PROTEIN SEQUENCE DATA ################################################
@@ -159,21 +155,12 @@ ep[9] = Ep[0]
 
        
 # INITIALIZE VARIABLES:      
-an = [[] for j in range(nr)]
-
-pd = [{} for i in range(nd)] # Immunogenicity Dictionary
-up = [[] for i in range(nd)] # Names of Unique Peptides
-N  = []                      # Number of Unique Peptides
-M  = []                      # Total Allele Frequencies
-
-f1 = [[] for j in range(nr)] # Allele Frequencies
-f2 = []     
-
+an = [[] for j in range(nr)]                      # Allele Names
+f1 = [[] for j in range(nr)]                      # Allele Frequencies
+f2 = []                                           # Individual Frequencies
 sg = [[[] for j in range(nr)] for i in range(nd)] # Sigma Values
-st = [[[] for j in range(nr)] for i in range(nd)] # Sigma Values
-
-c1 = [[] for i in range(nd)]                                           # Regional Coverage Scores
-c2 = [[] for i in range(nd)]     
+c1 = [[] for i in range(nd)]                      # Regional Coverage Scores
+c2 = [[] for i in range(nd)]                      # Individual Coverage Scores
 
 
 for i in range(nd): # Iterate Through Diseases 

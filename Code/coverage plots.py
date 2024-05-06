@@ -263,7 +263,7 @@ for t in range(nt):
       
     # ADJUST Y AXIS    
     plt.ylabel(r'$C_k$', fontweight='bold')   
-    # plt.ylim((0,ym1))
+    plt.ylim((0,ym1))
     plt.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
     ax.yaxis.major.formatter._useMathText = True
     
