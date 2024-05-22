@@ -103,7 +103,7 @@ pw = hf.compute_position_weights()  # Position Weights
 es = hf.compute_enrichment_scores() # Enrichment Scores
 
 
-# GET ALLELE FREQUENCY DATA 
+# GET ALLELE FREQUENCY DATA:
 a  = load_workbook(fd+fa)    # Load Allele Frequecy File 
 rs = a.sheetnames            # Region Names
 nr = len(rs)                 # Number of Regions
