@@ -68,7 +68,7 @@ ta  = 25 # Top Alleles (Max 25)
 #%% PARAMETERS ################################################################
 
 
-# Pathogen Labels / Sheet Names
+# PATHOGEN LABELS / SHEET NAMES:
 lb = ['Ebola GP1 (Zaire)',                             # Pathogen Sheet Names
       'Ebola GP1 (Sudan)',
       'Ebola NP (Zaire)',

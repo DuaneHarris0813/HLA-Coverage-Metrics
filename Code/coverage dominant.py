@@ -12,20 +12,47 @@ import hla_functions as hf
 
 
 # DATA FOLDER:
-fd  = '../Data/'
-fdr = '../Results/'
-fr  = 'Coverage Results.xlsx'
+fd  = '../Data/'              # Data Folder
+fdr = '../Results/'           # Results Folder
+fr  = 'Coverage Results.xlsx' # Results File
 
 
-# DATA FILES:
-fa =  'HLA-A Allele Frequencies.xlsx'               # File for Allele Frequency
-fs = ['HLA-A_Ebola_Zaire_GP1_Weighted_Results.xlsx',
+# HLA SPECIFIC FILES AND LABLES:
+    
+fa =  'HLA-A Allele Frequencies.xlsx'                # File for Allele Frequency
+fs = ['HLA-A_Ebola_Zaire_GP1_Weighted_Results.xlsx', # Pathogen Files
       'HLA-A_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
       'HLA-A_SARS_Wuhan-Hu-1_Weighted_Results.xlsx',     
       'HLA-A_SARS_DeltaAY4_Weighted_Results.xlsx',
       'HLA-A_SARS_OmicronBA1_Weighted_Results.xlsx',
       'HLA-A_SARS_OmicronBA2_Weighted_Results.xlsx',
       'HLA-A_SARS_OmicronBA5_Weighted_Results.xlsx']
+
+
+# fa =  'HLA-B Allele Frequencies.xlsx'                # File for Allele Frequency
+# fs = ['HLA-B_Ebola_Zaire_GP1_Weighted_Results.xlsx', # Pathogen Files
+#       'HLA-B_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
+#       'HLA-B_SARS_Wuhan-Hu-1_Weighted_Results.xlsx',      
+#       'HLA-B_SARS_DeltaAY4_Weighted_Results.xlsx',
+#       'HLA-B_SARS_OmicronBA1_Weighted_Results.xlsx',
+#       'HLA-B_SARS_OmicronBA2_Weighted_Results.xlsx',
+#       'HLA-B_SARS_OmicronBA5_Weighted_Results.xlsx']
+
+
+# fa =  'HLA-C Allele Frequencies.xlsx'                # File for Allele Frequency
+# fs = ['HLA-C_Ebola_Zaire_GP1_Weighted_Results.xlsx', # Pathogen Files
+#       'HLA-C_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
+#       'HLA-C_SARS_Wuhan-Hu-1_Weighted_Results.xlsx',      
+#       'HLA-C_SARS_DeltaAY4_Weighted_Results.xlsx',
+#       'HLA-C_SARS_OmicronBA1_Weighted_Results.xlsx',
+#       'HLA-C_SARS_OmicronBA2_Weighted_Results.xlsx',
+#       'HLA-C_SARS_OmicronBA5_Weighted_Results.xlsx']
+
+
+#%% PARAMETERS ################################################################
+    
+
+# PATHOGEN LABELS / SHEET NAMES:
 lb = ['Ebola GP1 (Zaire)',
       'Ebola GP1 (Sudan)',
       'SARS-CoV-2 Wuhan-Hu-1',
@@ -34,43 +61,6 @@ lb = ['Ebola GP1 (Zaire)',
       'SARS-CoV-2 Omicron BA.2',
       'SARS-CoV-2 Omicron BA.5']
 
-
-# fa =  'HLA-B Allele Frequencies.xlsx'               # File for Allele Frequency
-# fs = ['HLA-B_Ebola_Zaire_GP1_Weighted_Results.xlsx',
-#       'HLA-B_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
-#       'HLA-B_SARS_Wuhan-Hu-1_Weighted_Results.xlsx',      
-#       'HLA-B_SARS_DeltaAY4_Weighted_Results.xlsx',
-#       'HLA-B_SARS_OmicronBA1_Weighted_Results.xlsx',
-#       'HLA-B_SARS_OmicronBA2_Weighted_Results.xlsx',
-#       'HLA-B_SARS_OmicronBA5_Weighted_Results.xlsx']
-# lb = ['Ebola GP1 (Zaire)',
-#       'Ebola GP1 (Sudan)',
-#       'SARS-CoV-2 Wuhan-Hu-1',
-#       'SARS-CoV-2 Delta AY.4',
-#       'SARS-CoV-2 Omicron BA.1',
-#       'SARS-CoV-2 Omicron BA.2',
-#       'SARS-CoV-2 Omicron BA.5']
-
-
-# fa =  'HLA-C Allele Frequencies.xlsx'               # File for Allele Frequency
-# fs = ['HLA-C_Ebola_Zaire_GP1_Weighted_Results.xlsx',
-#       'HLA-C_Ebola_Sudan_GP1_Weighted_Results.xlsx',      
-#       'HLA-C_SARS_Wuhan-Hu-1_Weighted_Results.xlsx',      
-#       'HLA-C_SARS_DeltaAY4_Weighted_Results.xlsx',
-#       'HLA-C_SARS_OmicronBA1_Weighted_Results.xlsx',
-#       'HLA-C_SARS_OmicronBA2_Weighted_Results.xlsx',
-#       'HLA-C_SARS_OmicronBA5_Weighted_Results.xlsx']
-# lb = ['Ebola GP1 (Zaire)',
-#       'Ebola GP1 (Sudan)',
-#       'SARS-CoV-2 Wuhan-Hu-1',
-#       'SARS-CoV-2 Delta AY.4',
-#       'SARS-CoV-2 Omicron BA.1',
-#       'SARS-CoV-2 Omicron BA.2',
-#       'SARS-CoV-2 Omicron BA.5']
-
-
-#%% PARAMETERS ################################################################
-    
 
 # REGIONS:
 rg = ['Australia', 
@@ -86,6 +76,7 @@ rg = ['Australia',
       'Western Asia']
 
 
+# IMMUNO-DOMINANT EPITOPES, EBOLA:
 idpe = ['ATDVPSATK',
         'TDVPSATKR',
         'GFRSGVPPK',
@@ -98,6 +89,9 @@ idpe = ['ATDVPSATK',
         'TELRTFSIL',
         'ALFCICKFV',
         'LFCICKFVF']
+
+
+# IMMUNO-DOMINANT EPITOPES, SARS:
 idps = ['YLQPRTFLL',
         'GVYFASTEK',
         'NLNESLIDL',
@@ -163,7 +157,7 @@ for i in range(nd): # Iterate Through Diseases
         F[i].append(hf.compute_F(a1,p1,b1,af[j],es,pw,idp))
         
         
-#%% SAVE RESULTS:
+#%% WRITE RESULTS TO FILE #####################################################
 
 
 # LOAD RESULTS SHEET:
