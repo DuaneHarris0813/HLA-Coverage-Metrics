@@ -13,8 +13,8 @@ import matplotlib.pyplot as plt
 
 
 # DATA FILES:
-fdr = '../Results/'
-fr1 = 'Coverage Results.xlsx'
+fdr = '../Results/'           # Results Folder
+fr1 = 'Coverage Results.xlsx' # Results File
 
 
 # ALLELE TYPES:
@@ -54,47 +54,48 @@ sc  = 0.9 # Brightness Scale
 
 
 # FIGURE SIZE OPTIONS:
-fw  = 504
-fh  = 504/3
-ppi = 72
+fw  = 504   # Figure Width
+fh  = 504/3 # Figure Height
+ppi = 72    # Point Per Inch (Conversion Ratio)
 
 
 # VALUE RANGE OPTIONS:
-ym = 0.09
+ym = 0.09 # Upper Y Limit
 
 
 #%% PARAMETERS ################################################################
 
 
 # SIZES:
-nt = len(at)
-nd = len(lb)
-nr = len(rg)
+nt = len(at) # Number of Allele Types
+nd = len(lb) # Number of Pathogens
+nr = len(rg) # Number of Regions
 
 
 # ROW POSTITIONS:
 r1 = [4,18,32]
 
 
-# Color Schemes
-cr1 = [[ 1   , 0    , 1   ],
-       [ 1   , 0.4  , 1   ],
-       [ 0   , 1    , 1   ],
-       [ 0   , 0.75 , 1   ],
-       [ 0   , 0.5  , 1   ],
-       [ 0   , 0.25 , 1   ],
-       [ 0   , 0    , 1   ]]
-cr2 = [[0.0, 0.0, 1.0],
-       [1.0, 0.5, 0.0],
-       [0.0, 1.0, 0.0],
-       [1.0, 0.0, 0.0],
-       [1.0, 0.5, 0.5],
-       [1.0, 0.0, 1.0],
-       [1.0, 0.5, 1.0],
-       [0.5, 0.5, 0.5],
-       [1.0, 1.0, 0.0],
-       [0.0, 1.0, 1.0],
-       [0.0, 0.5, 1.0]]
+# COLOR SCHEMES:
+cr1 = [[1.00, 0.00, 1.00],
+       [1.00, 0.40, 1.00],
+       [0.00, 1.00, 1.00],
+       [0.00, 0.75, 1.00],
+       [0.00, 0.50, 1.00],
+       [0.00, 0.25, 1.00],
+       [0.00, 0.00, 1.00],
+       [0.00, 1.00, 0.00]]
+cr2 = [[0.00, 0.00, 1.00],
+       [1.00, 0.50, 0.00],
+       [0.00, 1.00, 0.00],
+       [1.00, 0.00, 0.00],
+       [1.00, 0.50, 0.50],
+       [1.00, 0.00, 1.00],
+       [1.00, 0.50, 1.00],
+       [0.50, 0.50, 0.50],
+       [1.00, 1.00, 0.00],
+       [0.00, 1.00, 1.00],
+       [0.00, 0.50, 1.00]]
 
 
 #%% READ DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,6 +141,7 @@ for j in range(nr):
 lbl = lb[:]
 for i in range(nd):
     lbl[i] = lbl[i].replace('GP1','GP')
+    lbl[i] = lbl[i].replace('HCP1','Hcp1')
 lbs = lbl[:]
 for i in range(nd):
     lbs[i] = lbs[i].replace('Ebola','EBV')
