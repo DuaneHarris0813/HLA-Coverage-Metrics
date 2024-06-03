@@ -16,10 +16,10 @@ import matplotlib.pyplot as plt
 
 
 # DATA FILES:
-fdr =  '../Results/'
-fs = ['HLA-A Sigmaj.xlsx',
-      'HLA-B Sigmaj.xlsx',
-      'HLA-C Sigmaj.xlsx']
+fdr =  '../Results/'       # Results Folder
+fs = ['HLA-A Sigmaj.xlsx', # Results File, HLA-A
+      'HLA-B Sigmaj.xlsx', # Results File, HLA-B
+      'HLA-C Sigmaj.xlsx'] # Results File, HLA-C
 
 
 # ALLELE TYPES:
@@ -77,9 +77,9 @@ idps = ['YLQPRTFLL',
 
 
 # FIGURE SIZE OPTIONS:
-fw  = 504
-fh  = 504/3
-ppi = 72
+fw  = 504   # Figure Width
+fh  = 504/3 # Figure Height
+ppi = 72    # Points Per Inch
 
 
 # BIN OPTIONS:
@@ -95,19 +95,19 @@ nd = len(lb) # Number of Pathogens
 nr = len(rg) # Number of Regions  
     
 
-# COLOR SCHEME:
-cr2 = [[0    , 0   , 1   ],
-       [1    , 0.5 , 0   ],
-       [0    , 1   , 0   ],
-       [1    , 0   , 0   ],
-       [1    , 0.5 , 0.5 ],
-       [1    , 0   , 1   ],
-       [1    , 0.5 , 1   ],
-       [0.5  , 0.5 , 0.5 ],
-       [1    , 1   , 0   ],
-       [0    , 1   , 1   ],
-       [0    , 0.5 , 1   ],
-       [0    , 0   , 0   ]]
+# COLOR SCHEME (FOR IDE):
+cr2 = [[0.0, 0.0, 1.0],
+       [1.0, 0.5, 0.0],
+       [0.0, 1.0, 0.0],
+       [1.0, 0.0, 0.0],
+       [1.0, 0.5, 0.5],
+       [1.0, 0.0, 1.0],
+       [1.0, 0.5, 1.0],
+       [0.5, 0.5, 0.5],
+       [1.0, 1.0, 0.0],
+       [0.0, 1.0, 1.0],
+       [0.0, 0.5, 1.0],
+       [0.0, 0.0, 0.0]]
 
 
 #%% READ DATA #################################################################

@@ -16,8 +16,8 @@ import matplotlib.pyplot as plt
 
 
 # DATA FILES:
-fdr =  '../Results/'
-fs  = 'Gj.xlsx'
+fdr =  '../Results/' # Results Folder
+fs  = 'Gj.xlsx'      # Results File
 
 
 # PATHOGENS:
@@ -55,24 +55,9 @@ idps = ['YLQPRTFLL',
 
 
 # FIGURE SIZE:
-fw  = 504
-fh  = 504/3
-ppi = 72
-
-
-# COLOR SCHEME (FOR IDE):
-cr2 = [[0    , 0   , 1   ],
-       [1    , 0.5 , 0   ],
-       [0    , 1   , 0   ],
-       [1    , 0   , 0   ],
-       [1    , 0.5 , 0.5 ],
-       [1    , 0   , 1   ],
-       [1    , 0.5 , 1   ],
-       [0.5  , 0.5 , 0.5 ],
-       [1    , 1   , 0   ],
-       [0    , 1   , 1   ],
-       [0    , 0.5 , 1   ],
-       [0    , 0   , 0   ]]
+fw  = 504   # Figure Width
+fh  = 504/3 # Figure Height
+ppi = 72    # Points Per Inch (Conversion Ratio)
 
 
 # SIZE OPTIONS:
@@ -80,13 +65,31 @@ nd = 7  # Number of Diseases
 nb = 50 # Number of Bins
 
 
+# COLOR SCHEME (FOR IDE):
+cr2 = [[0.0, 0.0, 1.0],
+       [1.0, 0.5, 0.0],
+       [0.0, 1.0, 0.0],
+       [1.0, 0.0, 0.0],
+       [1.0, 0.5, 0.5],
+       [1.0, 0.0, 1.0],
+       [1.0, 0.5, 1.0],
+       [0.5, 0.5, 0.5],
+       [1.0, 1.0, 0.0],
+       [0.0, 1.0, 1.0],
+       [0.0, 0.5, 1.0],
+       [0.0, 0.0, 0.0]]
+
+
 #%% READ DATA #################################################################
 
 
-r = load_workbook(fdr+fs)
-
+# INITIALIZE VARIABLES:
 pn = [[] for i in range(nd)]
 gj = [[] for i in range(nd)]
+
+
+# IMMUNOGENICITY RESULTS:
+r = load_workbook(fdr+fs)
 for i in r['Gj'].iter_rows(min_row=4,min_col=2,max_col=15,values_only=True):
     for j in range(nd):
         if isinstance(i[0+2*j],str):
@@ -109,6 +112,7 @@ bn = linspace(Mn,Mx,nb+1)
 #%% CHANGE LABEL NAMES ########################################################
 
 
+# PAHTOGEN NAMES: 
 lbl = lb[:]
 for i in range(nd):
     lbl[i] = lbl[i].replace('GP1','GP')
