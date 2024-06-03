@@ -35,16 +35,6 @@ fs = ['HLA-A_Ebola_Zaire_GP1_Weighted_Results.xlsx',   # Pathogen Files
       'HLA-A_SARS_OmicronBA2_Weighted_Results.xlsx',
       'HLA-A_SARS_OmicronBA5_Weighted_Results.xlsx',
       'HLA-A_Burkholderia_HCP1_Weighted_Results.xlsx']
-lb = ['Ebola GP1 (Zaire)',                             # Pathogen Sheet Names
-      'Ebola GP1 (Sudan)',
-      'Ebola NP (Zaire)',
-      'Ebola NP (Sudan)',
-      'SARS-CoV-2 Wuhan-Hu-1',
-      'SARS-CoV-2 Delta AY.4',
-      'SARS-CoV-2 Omicron BA.1',
-      'SARS-CoV-2 Omicron BA.2',
-      'SARS-CoV-2 Omicron BA.5', 
-      'Burkholderia HCP1']
 
 # fa =  'HLA-B Allele Frequencies.xlsx'                  # Allele Frequency File
 # fs = ['HLA-B_Ebola_Zaire_GP1_Weighted_Results.xlsx',   # Pathogen Files
@@ -57,16 +47,6 @@ lb = ['Ebola GP1 (Zaire)',                             # Pathogen Sheet Names
 #       'HLA-B_SARS_OmicronBA2_Weighted_Results.xlsx',
 #       'HLA-B_SARS_OmicronBA5_Weighted_Results.xlsx',
 #       'HLA-B_Burkholderia_HCP1_Weighted_Results.xlsx']
-# lb = ['Ebola GP1 (Zaire)',                             # Pathogen Sheet Names
-#       'Ebola GP1 (Sudan)',
-#       'Ebola NP (Zaire)',
-#       'Ebola NP (Sudan)',
-#       'SARS-CoV-2 Wuhan-Hu-1',
-#       'SARS-CoV-2 Delta AY.4',
-#       'SARS-CoV-2 Omicron BA.1',
-#       'SARS-CoV-2 Omicron BA.2',
-#       'SARS-CoV-2 Omicron BA.5', 
-#       'Burkholderia HCP1']
 
 # fa =  'HLA-C Allele Frequencies.xlsx'                  # Allele Frequency File
 # fs = ['HLA-C_Ebola_Zaire_GP1_Weighted_Results.xlsx',   # Pathogen Files
@@ -79,16 +59,6 @@ lb = ['Ebola GP1 (Zaire)',                             # Pathogen Sheet Names
 #       'HLA-C_SARS_OmicronBA2_Weighted_Results.xlsx',
 #       'HLA-C_SARS_OmicronBA5_Weighted_Results.xlsx',
 #       'HLA-C_Burkholderia_HCP1_Weighted_Results.xlsx']
-# lb = ['Ebola GP1 (Zaire)',                             # Pathogen Sheet Names
-#       'Ebola GP1 (Sudan)',
-#       'Ebola NP (Zaire)',
-#       'Ebola NP (Sudan)',
-#       'SARS-CoV-2 Wuhan-Hu-1',
-#       'SARS-CoV-2 Delta AY.4',
-#       'SARS-CoV-2 Omicron BA.1',
-#       'SARS-CoV-2 Omicron BA.2',
-#       'SARS-CoV-2 Omicron BA.5', 
-#       'Burkholderia HCP1']
 
 
 # OPTIONS:
@@ -96,6 +66,19 @@ ta  = 25 # Top Alleles (Max 25)
 
 
 #%% PARAMETERS ################################################################
+
+
+# Pathogen Labels / Sheet Names
+lb = ['Ebola GP1 (Zaire)',                             # Pathogen Sheet Names
+      'Ebola GP1 (Sudan)',
+      'Ebola NP (Zaire)',
+      'Ebola NP (Sudan)',
+      'SARS-CoV-2 Wuhan-Hu-1',
+      'SARS-CoV-2 Delta AY.4',
+      'SARS-CoV-2 Omicron BA.1',
+      'SARS-CoV-2 Omicron BA.2',
+      'SARS-CoV-2 Omicron BA.5', 
+      'Burkholderia HCP1']
 
 
 # GET POSITION WEIGHTS AND ENRICHMENT SCORES:

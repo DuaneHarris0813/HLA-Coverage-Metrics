@@ -191,9 +191,12 @@ for t in range(nt):
     plt.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
     ax.yaxis.major.formatter._useMathText = True    
     
+    # CREATE TITLE:
+    plt.title(at[t])
+    
     # CREATE LEGEND:
     if t==2:
-        plt.legend(fontsize=8, bbox_to_anchor=(0,-0.5), loc='upper left', ncol=3)
+        plt.legend(fontsize=8, bbox_to_anchor=(0,-0.5), loc='upper left', ncol=2)
        
     # SAVE PLOTS:
     plt.savefig(fdr+'Figures/Coverage Ratios/Fk by Region/'+at[t]+' Fk by Region.pdf',format='pdf',bbox_inches='tight')
@@ -239,10 +242,13 @@ for t in range(nt):
     plt.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
     ax.yaxis.major.formatter._useMathText = True
     
+    # CREATE TITLE:
+    plt.title(at[t])
+    
     # CREATE LEGEND:
     if t==2:
         plt.legend(fontsize=8, bbox_to_anchor=(0,-0.5), loc='upper left', ncol=3)
     
     # SAVE PLOTS:
-    plt.savefig(fdr+'Figures/Vaccine Protein Coverage Metrics/Ck by Pathogen/'+at[t]+' Ck by Pathogen.pdf',format='pdf',bbox_inches='tight')
+    plt.savefig(fdr+'Figures/Coverage Ratios/Fk by Pathogen/'+at[t]+' Fk by Pathogen.pdf',format='pdf',bbox_inches='tight')
     plt.show()

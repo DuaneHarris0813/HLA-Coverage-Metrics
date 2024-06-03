@@ -54,10 +54,6 @@ rg = ['Australia',
       'Western Asia']
 
 
-dbu = [0, 4, 9, 10]
-dbl = ['Ebola','SARS-CoV-2','Burkholderia']
-
-
 # VISUAL OPTIONS:
 rcs = 1   # Coverage (By Region) Color Scheme
 pcs = 2   # Coverage (By Pathogen) Color Scheme
@@ -93,7 +89,12 @@ r1 = [4,18,32]
 r2 = [4,33,62]
 
 
-# Color Schemes
+# PATHOGEN POSITIONS/LABELS:
+dbu = [0, 4, 9, 10]
+dbl = ['Ebola','SARS-CoV-2','Burkholderia']
+
+
+# COLOR SCHEMES:
 cr1 = [[ 1   , 0    , 1   ],
        [ 1   , 0.4  , 1   ],
        [ 1   , 0    , 0   ],
@@ -205,6 +206,7 @@ for j in range(nr):
 lbl = lb[:]
 for i in range(nd):
     lbl[i] = lbl[i].replace('GP1','GP')
+    lbl[i] = lbl[i].replace('HCP1','Hcp1')
 lbs = lbl[:]
 for i in range(nd):
     lbs[i] = lbs[i].replace('Ebola','EBV')
@@ -267,6 +269,9 @@ for t in range(nt):
     plt.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
     ax.yaxis.major.formatter._useMathText = True
     
+    # CREATE TITLE:
+    plt.title(at[t])
+    
     # CREATE LEGEND:
     if t==2:
         plt.legend(fontsize=8, bbox_to_anchor=(0,-0.5), loc='upper left', ncol=3)
@@ -315,6 +320,9 @@ for t in range(nt):
     plt.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
     ax.yaxis.major.formatter._useMathText = True
     
+    # CREATE TITLE:
+    plt.title(at[t])
+    
     # CREATE LEGEND:
     if t==2:
         plt.legend(fontsize=8, bbox_to_anchor=(0,-0.5), loc='upper left', ncol=3)
@@ -362,6 +370,9 @@ for i in range(len(dbu)-1):
             ax2.set_ylim((0,ymsg))
             plt.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
             ax2.yaxis.major.formatter._useMathText = True
+            
+            # CREATE TITLE:
+            plt.title(at[t])
         
             # CREATE LEGENDS:
             if t==2:
@@ -378,7 +389,7 @@ for i in range(len(dbu)-1):
 
 for j in range(nr):
     for t in range(nt):
-
+        
         # PLOT RESULTS:      
         fig,ax = plt.subplots(figsize=(fw/ppi,0.65*fw/ppi),dpi=300)
         data = array(f2[t][j])
@@ -390,6 +401,13 @@ for j in range(nr):
         
         # ANNOTATE POPULATION COVERAGE:
         plt.annotate('%.0f%% of the Population' % ac[t][j], xy=(12,3), fontsize=12)
+        
+        # LABEL Y-AXIS:
+        if t==0:
+            ax.set_ylabel('Frequency',fontweight='bold',fontsize=14)
+        
+        # CREATE TITLE:
+        plt.title(at[t],fontweight='bold')
         
         # SAVE PLOTS:
         plt.savefig(fdr+'Figures/Individual Coverage Heat Maps/Frequencies/'+rgl[j]+'/'+at[t]+' Individual Frequencies '+rgl[j]+'.pdf',format='pdf',bbox_inches='tight')
@@ -418,6 +436,10 @@ for j in range(nr):
             # SET AXIS LABELS
             ax.set_xticks(linspace(0,ta-1,ta)+0.5,an0[t][j],rotation=90,fontsize=12)
             ax.set_yticks(linspace(0,ta-1,ta)+0.5,an0[t][j],rotation=0,fontsize=12)
+
+            # LABEL Y-AXIS:
+            if t==0:
+                ax.set_ylabel(lbl[i],fontweight='bold',fontsize=14)
 
             # SAVE PLOTS:
             plt.savefig(fdr+'Figures/Individual Coverage Heat Maps/'+lb[i]+'/'+rgl[j]+'/'+at[t]+' Individual Coverage '+lb[i]+' '+rgl[j]+'.pdf',format='pdf',bbox_inches='tight')
