@@ -16,9 +16,9 @@ import seaborn as sb
 
 
 # DATA FILES:
-fdr = '../Results/'
-fr1 = 'Coverage Results.xlsx'
-fr2 = 'Individual Results'
+fdr = '../Results/'           # Results Folder
+fr1 = 'Coverage Results.xlsx' # Results File (Overall)
+fr2 = 'Individual Results'    # Results File (Individual)
 
 
 # ALLELE TYPES:
@@ -61,27 +61,27 @@ sc  = 0.9 # Brightness Scale
 
 
 # FIGURE SIZE OPTIONS:
-fw  = 504
-fh  = 504/3
-ppi = 72
+fw  = 504   # Figure Width
+fh  = 504/3 # Figure Height
+ppi = 72    # Point Per Inch (Conversion Ratio)
 
 
 # VALUE RANGE OPTIONS:
-ta   = 25 # Top Alleles
-ym1  = 0.0012
-ymf1 = 0.4
-ymsg = 0.0025
-ym2  = 0.14
-ym3  = 0.0025
+ta   = 25     # Top Alleles
+ym1  = 0.0012 # Upper Y Limit for Regional Coverage Results
+ymf1 = 0.4    # Upper Y Limit for Frequency vs Sigma Results (Frequency)
+ymsg = 0.0025 # Upper Y Limit for Frequency vs Sigma Results (Sigma)
+ym2  = 0.14   # Upper Color Bar Limit for Individual Frequency Results
+ym3  = 0.0025 # Upper Color Bar Limit for Individual Coverage Results
 
 
 #%% PARAMETERS ################################################################
 
 
 # SIZES:
-nt = len(at)
-nd = len(lb)
-nr = len(rg)
+nt = len(at) # Number of Allele Types
+nd = len(lb) # Number of Pathogens
+nr = len(rg) # Number of Regions
 
 
 # ROW POSTITIONS:
@@ -90,32 +90,32 @@ r2 = [4,33,62]
 
 
 # PATHOGEN POSITIONS/LABELS:
-dbu = [0, 4, 9, 10]
+dbu = [0,4,9,10]
 dbl = ['Ebola','SARS-CoV-2','Burkholderia']
 
 
 # COLOR SCHEMES:
-cr1 = [[ 1   , 0    , 1   ],
-       [ 1   , 0.4  , 1   ],
-       [ 1   , 0    , 0   ],
-       [ 1   , 0.4  , 0.4 ],
-       [ 0   , 1    , 1   ],
-       [ 0   , 0.75 , 1   ],
-       [ 0   , 0.5  , 1   ],
-       [ 0   , 0.25 , 1   ],
-       [ 0   , 0    , 1   ],
-       [ 0   , 1    , 0   ]]
-cr2 = [[0.0, 0.0, 1.0],
-       [1.0, 0.5, 0.0],
-       [0.0, 1.0, 0.0],
-       [1.0, 0.0, 0.0],
-       [1.0, 0.5, 0.5],
-       [1.0, 0.0, 1.0],
-       [1.0, 0.5, 1.0],
-       [0.5, 0.5, 0.5],
-       [1.0, 1.0, 0.0],
-       [0.0, 1.0, 1.0],
-       [0.0, 0.5, 1.0]]
+cr1 = [[1.00, 0.00, 1.00],
+       [1.00, 0.40, 1.00],
+       [1.00, 0.00, 0.00],
+       [1.00, 0.40, 0.40],
+       [0.00, 1.00, 1.00],
+       [0.00, 0.75, 1.00],
+       [0.00, 0.50, 1.00],
+       [0.00, 0.25, 1.00],
+       [0.00, 0.00, 1.00],
+       [0.00, 1.00, 0.00]]
+cr2 = [[0.00, 0.00, 1.00],
+       [1.00, 0.50, 0.00],
+       [0.00, 1.00, 0.00],
+       [1.00, 0.00, 0.00],
+       [1.00, 0.50, 0.50],
+       [1.00, 0.00, 1.00],
+       [1.00, 0.50, 1.00],
+       [0.50, 0.50, 0.50],
+       [1.00, 1.00, 0.00],
+       [0.00, 1.00, 1.00],
+       [0.00, 0.50, 1.00]]
 
 
 #%% READ DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
