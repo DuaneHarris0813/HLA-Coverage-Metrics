@@ -17,9 +17,9 @@ import matplotlib.pyplot as plt
 
 # DATA FILES:
 fdr =  '../Results/'       # Results Folder
-fs = ['HLA-A Sigmaj.xlsx', # Results File, HLA-A
-      'HLA-B Sigmaj.xlsx', # Results File, HLA-B
-      'HLA-C Sigmaj.xlsx'] # Results File, HLA-C
+fs = ['HLA-A Phij.xlsx', # Results File, HLA-A
+      'HLA-B Phij.xlsx', # Results File, HLA-B
+      'HLA-C Phij.xlsx'] # Results File, HLA-C
 
 
 # ALLELE TYPES:
