@@ -28,16 +28,16 @@ at = ['HLA-A',
 
 
 # PATHOGENS:
-lb = ['Ebola GP1 (Zaire)',
-      'Ebola GP1 (Sudan)',
-      'Ebola NP (Zaire)',
-      'Ebola NP (Sudan)',
+lb = ['Zaire Ebola GP',
+      'Sudan Ebola GP',
+      'Zaire Ebola NP',
+      'Sudan Ebola NP',
       'SARS-CoV-2 Wuhan-Hu-1',
       'SARS-CoV-2 Delta AY.4',
       'SARS-CoV-2 Omicron BA.1',
       'SARS-CoV-2 Omicron BA.2',
       'SARS-CoV-2 Omicron BA.5', 
-      'Burkholderia HCP1']
+      'Burkholderia Hcp1']
 
 
 # REGIONS:
@@ -178,7 +178,7 @@ for t in range(nt):
             for l in range(ta):
                 if k>=l and f2[t][j][k][l]>0:
                     s = s + f2[t][j][k][l]
-        ac[t].append(100*s)
+        ac[t].append(s)
         
 
 #%% CHANGE LABEL NAMES ########################################################
@@ -204,9 +204,9 @@ for j in range(nr):
     
 # PAHTOGEN NAMES: 
 lbl = lb[:]
-for i in range(nd):
-    lbl[i] = lbl[i].replace('GP1','GP')
-    lbl[i] = lbl[i].replace('HCP1','Hcp1')
+# for i in range(nd):
+#     lbl[i] = lbl[i].replace('GP1','GP')
+#     lbl[i] = lbl[i].replace('HCP1','Hcp1')
 lbs = lbl[:]
 for i in range(nd):
     lbs[i] = lbs[i].replace('Ebola','EBV')
@@ -400,7 +400,8 @@ for j in range(nr):
         ax.set_yticks(linspace(0,ta-1,ta)+0.5,an0[t][j],rotation=0,fontsize=12)
         
         # ANNOTATE POPULATION COVERAGE:
-        plt.annotate('%.0f%% of the Population' % ac[t][j], xy=(12,3), fontsize=12)
+        # plt.annotate('%.0f%% of the Population' % ac[t][j], xy=(12,3), fontsize=12)
+        plt.annotate(r'$Z_k=%1.2f$' % ac[t][j], xy=(20,3), fontsize=12)
         
         # LABEL Y-AXIS:
         if t==0:
