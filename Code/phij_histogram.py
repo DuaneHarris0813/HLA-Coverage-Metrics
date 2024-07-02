@@ -29,8 +29,8 @@ at = ['HLA-A',
 
 
 # PATHOGENS:
-lb = ['Ebola GP1 (Zaire)',
-      'Ebola GP1 (Sudan)',
+lb = ['Zaire Ebola GP',
+      'Sudan Ebola GP',
       'SARS-CoV-2 Wuhan-Hu-1',
       'SARS-CoV-2 Delta AY.4',
       'SARS-CoV-2 Omicron BA.1',
