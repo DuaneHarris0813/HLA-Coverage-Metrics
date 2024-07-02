@@ -24,8 +24,8 @@ at = ['HLA-A',
 
 
 # PATHOGENS:
-lb = ['Ebola GP1 (Zaire)',
-      'Ebola GP1 (Sudan)',
+lb = ['Zaire Ebola GP',
+      'Sudan Ebola GP',
       'SARS-CoV-2 Wuhan-Hu-1',
       'SARS-CoV-2 Delta AY.4',
       'SARS-CoV-2 Omicron BA.1',
@@ -139,9 +139,9 @@ for j in range(nr):
     
 # PAHTOGEN NAMES: 
 lbl = lb[:]
-for i in range(nd):
-    lbl[i] = lbl[i].replace('GP1','GP')
-    lbl[i] = lbl[i].replace('HCP1','Hcp1')
+# for i in range(nd):
+#     lbl[i] = lbl[i].replace('GP1','GP')
+#     lbl[i] = lbl[i].replace('HCP1','Hcp1')
 lbs = lbl[:]
 for i in range(nd):
     lbs[i] = lbs[i].replace('Ebola','EBV')
